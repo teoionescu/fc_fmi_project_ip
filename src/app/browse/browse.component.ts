@@ -35,15 +35,16 @@ export class BrowseComponent implements OnInit {
                             }
 
                             if (imageAsset.android) {
+                                // FOR REFERENCE ONLY
                                 // get the current density of the screen (dpi) and divide it by the default one to get the scale
-                                that.scale = nativeImage.getDensity() / android.util.DisplayMetrics.DENSITY_DEFAULT;
-                                that.actualWidth = nativeImage.getWidth();
-                                that.actualHeight = nativeImage.getHeight();
-                            } else {
+                                // that.scale = nativeImage.getDensity() / android.util.DisplayMetrics.DENSITY_DEFAULT;
+                                // that.actualWidth = nativeImage.getWidth();
+                                // that.actualHeight = nativeImage.getHeight();
                                 that.scale = nativeImage.scale;
                                 that.actualWidth = nativeImage.size.width * that.scale;
                                 that.actualHeight = nativeImage.size.height * that.scale;
                             }
+                            
                             that.labelText = `Displayed Size: ${that.actualWidth}x${that.actualHeight} with scale ${that.scale}\n` +
                                 `Image Size: ${Math.round(that.actualWidth / that.scale)}x${Math.round(that.actualHeight / that.scale)}`;
 
