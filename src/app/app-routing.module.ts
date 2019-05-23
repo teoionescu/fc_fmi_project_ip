@@ -2,9 +2,11 @@ import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NSEmptyOutletComponent } from "nativescript-angular";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
+import { LoginComponent } from './login/login.component';
+import { AppComponent } from "./app.component";
 
 const routes: Routes = [
-    {
+    /*{
         path: "",
         redirectTo: "/(homeTab:home/default//browseTab:browse/default//searchTab:search/default//historyTab:history/default)",
         pathMatch: "full"
