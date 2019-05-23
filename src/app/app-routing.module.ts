@@ -11,7 +11,6 @@ const routes: Routes = [
         redirectTo: "/(homeTab:home/default//browseTab:browse/default//searchTab:search/default//historyTab:history/default)",
         pathMatch: "full"
     },
-
     {
         path: "home",
         component: NSEmptyOutletComponent,
@@ -35,11 +34,20 @@ const routes: Routes = [
         component: NSEmptyOutletComponent,
         loadChildren: "~/app/history/history.module#HistoryModule",
         outlet: "historyTab"
-    }
+    }*/
+
+    { path: "", redirectTo: "/login", pathMatch: "full" },
+    {
+        path: "login", component: LoginComponent
+    },
+    {
+        path: "tabs",
+        loadChildren: "~/app/tabs/tabs.module#TabsModule"
+    },
 ];
 
 @NgModule({
-    imports: [NativeScriptRouterModule.forRoot(routes)],
+    imports: [NativeScriptRouterModule.forRoot(routes, { enableTracing: true })],
     exports: [NativeScriptRouterModule]
 })
 export class AppRoutingModule { }

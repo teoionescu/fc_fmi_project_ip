@@ -15,7 +15,7 @@ export class TabsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.routerExtension.navigate([{ outlets: { homeTab: ["home"], browseTab: ["browse"], searchTab: ["search"] } }], { relativeTo: this.activeRoute });
+        this.routerExtension.navigate([{ outlets: { homeTab: ["home"], browseTab: ["browse"], searchTab: ["search"], historyTab: ["history"] } }], { relativeTo: this.activeRoute });
     }
 
     getIconSource(icon: string): string {

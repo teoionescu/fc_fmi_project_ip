@@ -28,6 +28,12 @@ import { TabsComponent } from "./tabs.component";
                         outlet: "searchTab",
                         component: NSEmptyOutletComponent,
                         loadChildren: "~/app/search/search.module#SearchModule"
+                    },
+                    {
+                        path: "history",
+                        outlet: "historyTab",
+                        component: NSEmptyOutletComponent,
+                        loadChildren: "~/app/history/history.module#HistoryModule"
                     }
                 ]
             }

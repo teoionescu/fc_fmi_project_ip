@@ -5,7 +5,8 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { HistoryComponent } from "./history.component";
 
 const routes: Routes = [
-    { path: "default", component: HistoryComponent }
+    { path: "", redirectTo: "history" },
+    { path: "history", component: HistoryComponent }
 ];
 
 @NgModule({

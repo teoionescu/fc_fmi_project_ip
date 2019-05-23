@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
         this.alert(token);
         setTimeout(() => {
           this.routerExtension.navigate(["/tabs/default"], { clearHistory: true });
-        }, 1000);
+        }, 100);
       })
       .catch(() => {
           this.alert("Unfortunately we could not find your account.");
