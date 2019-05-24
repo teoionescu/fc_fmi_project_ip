@@ -62,7 +62,7 @@ export class BrowseComponent implements OnInit {
                             }
 
                             const imageSource = fromNativeSource(nativeImage);
-                            that.base64 = imageSource.toBase64String("png", 60);
+                            that.base64 = imageSource.toBase64String("jpg", 60);
                             
                             that.labelText = `Displayed Size: ${that.actualWidth}x${that.actualHeight}`;
 
