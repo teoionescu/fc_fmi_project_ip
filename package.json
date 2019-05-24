@@ -27,6 +27,7 @@
     "nativescript-angular": "~7.2.0",
     "nativescript-camera": "^4.5.0",
     "nativescript-theme-core": "~1.0.4",
+    "nativescript-ui-listview": "^6.3.0",
     "reflect-metadata": "~0.1.12",
     "rxjs": "~6.3.0",
     "tns-core-modules": "~5.4.0",

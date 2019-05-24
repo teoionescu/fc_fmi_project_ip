@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { ServerService } from "./shared/server.service";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NativeScriptHttpModule } from "nativescript-angular/http";
+import { DataService } from "./shared/data.service";
 
 @NgModule({
     bootstrap: [
@@ -17,14 +18,15 @@ import { NativeScriptHttpModule } from "nativescript-angular/http";
         NativeScriptModule,
         AppRoutingModule,
         NativeScriptFormsModule,
-        NativeScriptHttpModule,
+        NativeScriptHttpModule
     ],
     declarations: [
         AppComponent,
         LoginComponent
     ],
     providers: [
-        ServerService
+        ServerService,
+        DataService
     ],
     schemas: [
         NO_ERRORS_SCHEMA

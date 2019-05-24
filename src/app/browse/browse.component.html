@@ -1,5 +1,5 @@
 <ActionBar class="action-bar">
-    <Label class="action-bar-title" text="Browse"></Label>
+    <Label class="action-bar-title" text="Guess"></Label>
 </ActionBar>
 
 <!-- <GridLayout class="page page-content">
@@ -31,8 +31,14 @@
             </StackLayout>
         </StackLayout>
 
-        <Image row="1" [src]="cameraImage" stretch="aspectFit" margin="10"></Image>
-        <TextView row="2" [(ngModel)]="labelText" editable="false"></TextView>>
-        <Button row="3" text="Take Picture" (tap)='onTakePictureTap($event)' padding="10"></Button>
+        <Button row="1" text="Take Picture" (tap)='onTakePictureTap($event)' class="btn btn-primary m-t-20"></Button>
+        <!-- <TextView></TextView> -->
+        <StackLayout row="2" margin="10">
+            <Label [text]="labelText" class="login-label"></Label>
+        </StackLayout>
+        <StackLayout row="3">
+            <Image [src]="cameraImage" stretch="aspectFit" margin="10"></Image>
+            <Button *ngIf='base64 !== undefined' text="Guess leaf" (tap)='onGuessLeafTap($event)' class="btn btn-primary m-t-20"></Button>
+        </StackLayout>
     </GridLayout>
 </ScrollView>

@@ -3,11 +3,13 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 
 import { HistoryRoutingModule } from "./history-routing.module";
 import { HistoryComponent } from "./history.component";
+import { NativeScriptUIListViewModule } from "nativescript-ui-listview/angular";
 
 @NgModule({
     imports: [
         NativeScriptCommonModule,
-        HistoryRoutingModule
+        HistoryRoutingModule,
+        NativeScriptUIListViewModule,
     ],
     declarations: [
         HistoryComponent,

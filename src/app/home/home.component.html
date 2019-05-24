@@ -1,11 +1,23 @@
 <ActionBar class="action-bar">
-    <Label class="action-bar-title" text="Home"></Label>
+    <Label class="action-bar-title" text="Explore"></Label>
 </ActionBar>
 
-<GridLayout class="page page-content">
-    <ListView [items]="items" class="list-group">
-        <ng-template let-item="item">
-            <Label [nsRouterLink]="['../item', item.id]" [text]="item.name" class="list-group-item"></Label>
-        </ng-template>
-    </ListView>
+<GridLayout tkExampleTitle tkToggleNavButton class="page page-content">
+    <RadListView [items]="items" class="list-group">
+        <!-- <ng-template tkListItemTemplate let-item="item">
+            <Label [nsRouterLink]="['../item', item.id]" [text]="item.data.Common_name" class="list-group-item"></Label>
+        </ng-template> -->
+        <ng-template tkListItemTemplate let-item="item">
+            <GridLayout class="listItemTemplateGrid" [nsRouterLink]="['../item', item.id]">
+                <!-- <Image src="http://images.unsplash.com/photo-1496857239036-1fb137683000?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9" height="50" stretch="aspectFit"></Image> -->
+                <GridLayout verticalAlignment="bottom">
+                <StackLayout class="labelsStackLayout">
+                    <Label [text]="item.data.Common_name"></Label>
+                    <!-- <Label [text]="item.data.Specific_name"></Label> -->
+                </StackLayout>
+                </GridLayout>
+            </GridLayout>
+        </ng-template>    
+        <ListViewGridLayout tkListViewLayout scrollDirection="Vertical" ios:itemHeight="250" spanCount="2"></ListViewGridLayout>
+    </RadListView>
 </GridLayout>

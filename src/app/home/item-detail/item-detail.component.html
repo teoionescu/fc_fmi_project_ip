@@ -1,8 +1,27 @@
 <ActionBar class="action-bar">
     <NavigationButton (tap)="onBackTap()" android.systemIcon="ic_menu_back"></NavigationButton>
-    <Label class="action-bar-title" [text]="item.name"></Label>
+    <Label class="action-bar-title" [text]="item.data.Common_name"></Label>
 </ActionBar>
 
-<GridLayout>
-    <Label class="m-10 h3" verticalAlignment="top" [text]="item.description"></Label>
-</GridLayout>
+<DockLayout class="page" stretchLastChild="false">
+    <StackLayout dock="top" class="card">
+        <GridLayout columns="*, auto" rows="auto" class="card-header">
+            <StackLayout col="0" row="0" verticalAlignment="center">
+                <StackLayout orientation="horizontal">
+                    <Label [text]="item.data.Common_name" class="h3 title m-r-2"></Label>
+                    <Label text="(leaf)" class="h3 caption"></Label>
+                </StackLayout>
+                <Label [text]="item.data.Specific_name" class="h5 caption"></Label>
+            </StackLayout>
+            <!-- <Image col="1" row="0" src="~/images/logo.png" class="image img-circle"></Image> -->
+        </GridLayout>
+        <StackLayout class="hr-light"></StackLayout>
+        <StackLayout class="card-body">
+            <Label [text]="item.data.Details.Wikipedia" style="font: bold"
+                textWrap="true" class="body caption"></Label>
+            <Label text="Lorem ipsum dolor sit amet, nam ne odio indoctum, cum eu accumsan albucius cotidieque. Eu nisl facete repudiandae mei. Ius probo mutat no. Omnis definitiones usu ex, vix tincidunt mnesarchum ei, pro diam reque ei."
+                textWrap="true" class="body caption"></Label>
+        </StackLayout>
+    </StackLayout>
+    <!-- <Button dock="bottom" text="Button" (tap)="onButtonTap()"></Button> -->
+</DockLayout>

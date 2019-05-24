@@ -2,7 +2,25 @@
     <Label class="action-bar-title" text="History"></Label>
 </ActionBar>
 
-<GridLayout class="page page-content">
+<GridLayout tkExampleTitle tkToggleNavButton class="page page-content">
+    <RadListView [items]="items" pullToRefresh="true" (pullToRefreshInitiated)="onPullToRefreshInitiated($event)" class="list-group">
+        <ng-template tkListItemTemplate let-item="item">
+            <GridLayout class="listItemTemplateGrid">
+                <!-- [nsRouterLink]="['../browse/item', item.data.ID]" -->
+                <Image [src]="item.image" height="250" stretch="aspectFit"></Image>
+                <GridLayout verticalAlignment="bottom">
+                <StackLayout class="labelsStackLayout">
+                    <Label [text]="item.data.ID"></Label>
+                    <Label [text]="item.data.Common_name"></Label>
+                </StackLayout>
+                </GridLayout>
+            </GridLayout>
+        </ng-template>
+        <ListViewLinearLayout tkListViewLayout scrollDirection="Vertical" itemInsertAnimation="Default" itemDeleteAnimation="Default"></ListViewLinearLayout>
+    </RadListView>
+</GridLayout>
+
+<!-- <GridLayout class="page page-content">
     <Label class="page-icon fa" text="&#xf1da;"></Label>
     <Label class="page-placeholder" text="History Page content goes here"></Label>
-</GridLayout>
+</GridLayout> -->

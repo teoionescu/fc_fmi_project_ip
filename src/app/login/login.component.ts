@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.serverip = getString("default_serverip", "5.12.108.205");
-    this.serverport = getNumber("default_serverip", 2020);
+    this.serverport = getNumber("default_serverport", 2020);
     this.user.username = getString("default_username", "foo");
     this.user.password = getString("default_password", "bar");
   }
@@ -76,12 +76,10 @@ export class LoginComponent implements OnInit {
     this.serverService.login(this.serverip, this.serverport, this.user)
       .then((token: string) => {
         this.alert(token);
-        setTimeout(() => {
-          this.routerExtension.navigate(["/tabs/default"], { clearHistory: true });
-        }, 100);
+        this.routerExtension.navigate(["/tabs/default"], { clearHistory: true });
       })
       .catch(() => {
-          this.alert("Unfortunately we could not find your account.");
+        this.alert("Unfortunately we could not find your account.");
       });
   }
 

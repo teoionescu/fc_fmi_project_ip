@@ -3,11 +3,13 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 
 import { BrowseRoutingModule } from "./browse-routing.module";
 import { BrowseComponent } from "./browse.component";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 @NgModule({
     imports: [
         NativeScriptCommonModule,
-        BrowseRoutingModule
+        BrowseRoutingModule,
+        NativeScriptFormsModule
     ],
     declarations: [
         BrowseComponent

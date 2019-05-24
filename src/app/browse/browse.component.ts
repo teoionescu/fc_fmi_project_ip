@@ -3,10 +3,15 @@ import { Component, OnInit } from "@angular/core";
 import { takePicture, requestPermissions } from 'nativescript-camera';
 import { ImageAsset } from 'tns-core-modules/image-asset';
 
+import { fromNativeSource } from "tns-core-modules/image-source";
+import { ServerService } from "../shared/server.service";
+import { QueryInfo } from "../shared/queryinfo.model";
+
 @Component({
     selector: "Browse",
     moduleId: module.id,
-    templateUrl: "./browse.component.html"
+    templateUrl: "./browse.component.html",
+    styleUrls: ['./browse.component.css'],
 })
 export class BrowseComponent implements OnInit {
     public saveToGallery: boolean = false;
@@ -17,8 +22,25 @@ export class BrowseComponent implements OnInit {
     public cameraImage: ImageAsset;
     public actualWidth: number;
     public actualHeight: number;
-    public scale: number = 1;
     public labelText: string;
+    public base64: string;
+
+    constructor(private serverService: ServerService) {
+        // Use the component constructor to inject providers.
+    }
+
+    ngOnInit(): void {
+        // Use the "ngOnInit" handler to initialize data for the view.
+    }
+    
+    onGuessLeafTap(args) {
+        this.serverService.query(this.base64).then((data: QueryInfo) => {
+            console.log(data);
+            this.alert("Recognized: " + data.Common_name + " (" + data.ID + ")");
+        }).catch(() => {
+            this.alert("Unfortunately an error occured.");
+        });
+    }
 
     onTakePictureTap(args) {
         requestPermissions().then(
@@ -35,21 +57,18 @@ export class BrowseComponent implements OnInit {
                             }
 
                             if (imageAsset.android) {
-                                // FOR REFERENCE ONLY
-                                // get the current density of the screen (dpi) and divide it by the default one to get the scale
-                                // that.scale = nativeImage.getDensity() / android.util.DisplayMetrics.DENSITY_DEFAULT;
-                                // that.actualWidth = nativeImage.getWidth();
-                                // that.actualHeight = nativeImage.getHeight();
-                                that.scale = nativeImage.scale;
-                                that.actualWidth = nativeImage.size.width * that.scale;
-                                that.actualHeight = nativeImage.size.height * that.scale;
+                                that.actualWidth = nativeImage.getWidth();
+                                that.actualHeight = nativeImage.getHeight();
                             }
+
+                            const imageSource = fromNativeSource(nativeImage);
+                            that.base64 = imageSource.toBase64String("png", 60);
                             
-                            that.labelText = `Displayed Size: ${that.actualWidth}x${that.actualHeight} with scale ${that.scale}\n` +
-                                `Image Size: ${Math.round(that.actualWidth / that.scale)}x${Math.round(that.actualHeight / that.scale)}`;
+                            that.labelText = `Displayed Size: ${that.actualWidth}x${that.actualHeight}`;
 
                             console.log(`${that.labelText}`);
                         });
+
                     }, (error) => {
                         console.log("Error: " + error);
                     });
@@ -57,12 +76,12 @@ export class BrowseComponent implements OnInit {
             () => alert('permissions rejected')
         );
     }
-    
-    constructor() {
-        // Use the component constructor to inject providers.
-    }
 
-    ngOnInit(): void {
-        // Use the "ngOnInit" handler to initialize data for the view.
+    alert(message: string) {
+        return alert({
+            title: "Frunzulitze",
+            okButtonText: "OK",
+            message: message
+        });
     }
 }
